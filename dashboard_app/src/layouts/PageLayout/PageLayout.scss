@@ -1,0 +1,36 @@
+@use "../../styles/abstracts/variables" as *;
+@import "../../styles/abstracts/mixins";
+
+.page {
+  background: $page-background;
+  background: $liner-background;
+  font-family: $regular-font;
+  color: $font-color;
+  font-size: $h4;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: grid;
+  height: 97%;
+  width: 97%;
+  background: $glass-background;
+  border-radius: 2rem;
+  gap: 16px;
+  grid-template-columns: 20% 55% auto;
+  overflow: hidden;
+}
+@include responsive(sm_desktop) {
+  .container {
+    grid-template-columns: 10% 50% auto;
+    overflow-y: scroll;
+  }
+}
+@include responsive(tablet) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}

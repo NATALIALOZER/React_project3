@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+// import { useEffect } from "react";
+import PageLayout from "./layouts/PageLayout/PageLayout";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import Auth from "./components/pages/Auth/Auth";
+// import { auth } from "../src/actions/user";
+
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  // const isAuth = useSelector((state) => state.user.isAuth);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(auth());
+  // }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      { <BrowserRouter>
+        <Routes>
+          {/* <Route
+            path="/auth"
+            element={isAuth ? <Navigate to="/" /> : <Auth />}
+          /> */}
+          <Route
+            path="/"
+            element={<PageLayout />}
+          />
+        </Routes>
+      </BrowserRouter>
+      /*<ToastContainer /> */
+      }
     </div>
   );
 }
