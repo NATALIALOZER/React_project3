@@ -1,0 +1,35 @@
+@use "../../../styles/abstracts/variables" as *;
+@import "../../../styles/abstracts/mixins";
+
+.RightAside {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  justify-content: space-evenly;
+  font-size: $h4;
+  color: $grey;
+  padding: $common-padding;
+  gap: $gap;
+}
+
+@include responsive(sm_desktop) {
+  .RightAside {
+    justify-content: flex-start;
+    margin-top: $gap;
+  }
+}
+
+@include responsive(tablet) {
+  .RightAside {
+    width: 100%;
+    margin-top: 0;
+    padding: 0;
+    border-top: 3px dotted $border;
+  }
+  .RightAside > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $boxes-padding;
+  }
+}

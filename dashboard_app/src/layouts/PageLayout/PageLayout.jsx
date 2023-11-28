@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-// import RightAside from "./RightAside/RightAside";
-// import MainDash from "./MainDash/MainDash";
-// import LeftSidebar from "./LeftSidebar/LeftSidebar";
+
 import "./PageLayout.scss";
+import LeftSidebar from "./LeftSidebar/LeftSidebar";
+import MainDash from "./MainDash/MainDash";
+import RightSidebar from "./RightSidebar/RightSidebar";
+
 // import { getTasks } from "../../../store/actions/todoList";
 // import { connect } from "react-redux";
 // import { useDispatch } from "react-redux";
@@ -22,9 +24,9 @@ const PageLayout = ({ user }) => {
   return (
     <div className="page">
       <div className="container">
-        {/* <LeftSidebar handleTabSwich={changeView} />
+        <LeftSidebar handleTabSwich={changeView} />
         <MainDash currentTab={currentTab} />
-        <RightAside /> */}
+        <RightSidebar />
       </div>
     </div>
   );

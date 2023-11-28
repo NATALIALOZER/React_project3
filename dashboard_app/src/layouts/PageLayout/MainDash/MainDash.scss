@@ -1,0 +1,32 @@
+@use "../../../styles/abstracts/variables" as *;
+@import "../../../styles/abstracts/mixins";
+
+.MainDash {
+  display: flex;
+  flex-direction: column;
+  color: $grey;
+  padding: $common-padding;
+}
+
+.Dashboard {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: $gap;
+    width: 100%;
+  }
+}
+
+@include responsive(sm_desktop) {
+  .MainDash {
+    width: 100%;
+  }
+}
+
+@include responsive(tablet) {
+  .MainDash {
+    min-width: 300px;
+    padding: $gap;
+    box-sizing: border-box;
+  }
+}

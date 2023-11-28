@@ -1,0 +1,22 @@
+@use "../../../styles/abstracts/variables" as *;
+@import "../../../styles/abstracts/mixins";
+
+.Cards {
+  display: flex;
+  gap: $gap;
+  height: auto;
+}
+
+.parentContainer {
+  width: 100%;
+}
+
+@include responsive(sm_desktop) {
+  .Cards {
+    flex-direction: column;
+    height: 33rem;
+  }
+  .parentContainer {
+    height: 9rem;
+  }
+}

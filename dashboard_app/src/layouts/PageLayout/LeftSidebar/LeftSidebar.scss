@@ -1,0 +1,97 @@
+@use "../../../styles/abstracts/variables" as *;
+@import "../../../styles/abstracts/mixins";
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: $common-padding;
+  transition: all 300ms ease;
+  color: $font-color;
+
+  &__logo {
+    display: flex;
+    font-weight: bold;
+    font-size: $h1;
+    align-items: flex-end;
+    justify-content: space-evenly;
+  }
+  &__logo > img {
+    width: 4rem;
+    height: 4rem;
+  }
+  &__logo > span > span {
+    color: $light-purple;
+  }
+
+  &__menu {
+    margin-top: $large-gap;
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+  }
+
+  &__menuItem {
+    display: flex;
+    align-items: center;
+    gap: $gap;
+    height: 2.5rem;
+    margin-left: $gap;
+    position: relative;
+    transition: all 300ms ease;
+    font-size: $h4;
+    border-radius: $radius;
+    &:hover {
+      cursor: pointer;
+    }
+    &:last-child {
+      margin-top: $extra-large-gap;
+    }
+    &.active {
+      background: $focuse-opacity;
+      margin-left: 0;
+      &::before {
+        content: "";
+        width: 8px;
+        height: 100%;
+        background-color: $focuse;
+        // margin-right: calc(1rem - 8px);
+      }
+    }
+  }
+}
+
+@include responsive(sm_desktop) {
+  .sidebar {
+    // position: fixed;
+    &__logo {
+      display: none;
+    }
+    &__menuItem {
+      min-width: 55px;
+    }
+    &__menuItem > span {
+      display: none;
+    }
+  }
+}
+
+@include responsive(tablet) {
+  .sidebar {
+    z-index: 9;
+    width: 55%;
+    padding-right: $gap;
+    height: 100%;
+    &__menuItem > span {
+      display: block;
+    }
+    &__logo {
+      display: flex;
+      max-width: 220px;
+    }
+    &__menuItem:last-child {
+      position: relative;
+      margin-top: 6rem;
+    }
+  }
+}

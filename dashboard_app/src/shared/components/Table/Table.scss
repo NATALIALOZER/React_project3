@@ -1,0 +1,44 @@
+@use "../../../styles/abstracts/variables" as *;
+@import "../../../styles/abstracts/mixins";
+
+.MuiTableRow-root > * {
+  padding: $gap;
+}
+
+.MuiTableRow-root.MuiTableRow-head > * {
+  font-weight: bold !important;
+  color: $second-font-color;
+}
+
+.Table {
+  height: 100%;
+  position: relative;
+}
+
+.Table td,
+th {
+  border: none !important;
+  color: $second-font-color !important;
+}
+
+.Table:first-child {
+  border-radius: $radius !important;
+}
+
+.status {
+  padding: calc($gap / 2);
+  border-radius: $radius;
+}
+
+.Details {
+  color: $blue !important;
+}
+
+@include responsive(tablet) {
+  .Table {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

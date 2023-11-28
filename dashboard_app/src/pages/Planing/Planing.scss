@@ -1,0 +1,7 @@
+@use "../../styles/abstracts/variables" as *;
+
+.Planing {
+  display: flex;
+  flex-direction: column;
+  row-gap: $gap;
+}
