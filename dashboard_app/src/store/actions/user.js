@@ -29,7 +29,7 @@ export const registration = async (
 export const login = (email, password) => {
   return async (dispatch) => {
     await axios
-      .post("http://localhost:4444/api/auth", {
+      .post("http://localhost:4444/auth/login", {
         email,
         password,
       })
@@ -47,7 +47,7 @@ export const login = (email, password) => {
 export const auth = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://localhost:4444/api/auth/auth`, {
+      const response = await axios.get(`http://localhost:4444/auth/auth`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       dispatch(setUser(response.data.user));
