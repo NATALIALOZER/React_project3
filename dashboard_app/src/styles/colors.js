@@ -8,7 +8,7 @@ export const Colors = {
     dark: "#242d49",
     light: "",
     muted: "",
-    border: "#788097",
+    border: "#000",
     body_bg: "linear-gradient(180deg, #97d294 0%, #a0eba6 100%)",
     block_bg: "rgba(25, 25, 25, 0.3)",
     shadow: "0px 19px 60px rgb(0 0 0 / 8%)",

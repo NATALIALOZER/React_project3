@@ -1,38 +1,37 @@
-import "./App.scss";
-// import { useEffect } from "react";
-import PageLayout from "./layouts/PageLayout/PageLayout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import Auth from "./components/pages/Auth/Auth";
-// import { auth } from "../src/actions/user";
+import { useEffect } from "react";
 
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { auth } from "../src/store/actions/user";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import PageLayout from "./layouts/PageLayout/PageLayout";
+import Auth from "./pages/Auth/Auth";
+
+import "./App.scss";
+
 
 function App() {
-  // const isAuth = useSelector((state) => state.user.isAuth);
-  // const dispatch = useDispatch();
+  const isAuth = useSelector((state) => state.user.isAuth);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(auth());
-  // }, []);
+  useEffect(() => {
+    dispatch(auth());
+  }, []);
 
   return (
     <div className="App">
-      { <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-          {/* <Route
-            path="/auth"
-            element={isAuth ? <Navigate to="/" /> : <Auth />}
-          /> */}
           <Route
-            path="/"
-            element={<PageLayout />}
+            path="/*"
+            element={isAuth ? <PageLayout /> : <Auth />}
           />
         </Routes>
       </BrowserRouter>
-      /*<ToastContainer /> */
-      }
+      <ToastContainer />
     </div>
   );
 }

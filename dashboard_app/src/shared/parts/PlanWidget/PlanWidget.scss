@@ -1,0 +1,46 @@
+@use "../../../styles/abstracts/variables" as *;
+
+.widget-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+}
+.TaskList {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  height: auto;
+  column-gap: 1em;
+}
+.Task {
+  display: flex;
+  height: 5em;
+  border-radius: 0.7rem;
+  color: $second-font-color;
+  padding: 1rem;
+  position: relative;
+}
+.Task:hover {
+  box-shadow: none !important;
+}
+
+.first {
+  background-color: $orange;
+  flex: 9;
+}
+.second {
+  background-color: $pink;
+  opacity: 0.5;
+  flex: 5;
+}
+.third {
+  background-color: $purple;
+  opacity: 0.1;
+  flex: 1;
+}
+.input-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 1em;
+}

@@ -4,8 +4,10 @@ import Blog from "../../../pages/Blog/Blog";
 import Planing from "../../../pages/Planing/Planing";
 import Table from "../../../shared/components/Table/Table";
 import Cards from "../../../shared/parts/Cards/Cards";
-// import Loader from "../../../ui/Loader/Loader";
+import Loader from "../../../shared/components/Loader/Loader";
 
+
+//to do: change to map
 const MainDash = (props) => {
   const switchDash = () => {
     switch (props.currentTab) {
@@ -29,7 +31,6 @@ const MainDash = (props) => {
         );
 
       case 3:
-      default:
         return (
           <div className="Planing">
             <div className="title">Planing Page</div>
@@ -37,8 +38,8 @@ const MainDash = (props) => {
           </div>
         );
 
-      // default:
-      //   return <Loader />;
+      default:
+        return <Loader />;
     }
   };
 

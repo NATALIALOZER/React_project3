@@ -47,9 +47,10 @@ export default function BasicTable() {
         component={Paper}
         style={{
           marginTop: "10px",
-          boxShadow: "0px 13px 20px 0px #80808029",
-          background: "rgba(25, 25, 25, .3)",
+          boxShadow: "5px 5px 0px 0px rgba(0, 0, 0, 1)",
+          background: "white",
           borderRadius: "0.7rem",
+          border: "3px solid black"
         }}
       >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">

@@ -1,21 +1,22 @@
 @use "../../styles/abstracts/variables" as *;
 
 .BlogLayout {
+  background-color: $c-background;
   display: flex;
   justify-content: space-between;
-  border: 2px dotted $border;
+  border: 2px solid $border;
   border-radius: $radius;
   box-sizing: border-box;
   gap: $gap;
   padding: $gap;
+  height: 500px;
 }
 
 .BlogLeftSide {
   display: flex;
   flex-direction: column;
   flex: 6;
-  height: 500px;
-  overflow-y: auto;
+  overflow-y: scroll;
   gap: $gap;
 }
 
@@ -57,16 +58,19 @@
 .add-button:hover {
   color: $blue;
   background: $active-dark-background;
+  outline: none !important;
 }
 
 .delete-button:hover {
   color: $error-red;
   background: $active-dark-background;
+  outline: none !important;
 }
 
 .edit-button:hover {
   color: $light-green;
   background: $active-dark-background;
+  outline: none !important;
 }
 
 .delete-mode:hover {

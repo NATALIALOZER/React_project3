@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import "./Blog.scss";
-import {
-  UilCancel,
-  UilEditAlt,
-  UilFocusAdd,
-  UilBan,
-} from "@iconscout/react-unicons";
-import { NotesData } from "../../core/mocks/mocks";
-// import CreateEditDialog from "../../parts/CreateEditDialog/CreateEditDialog";
+import { UilCancel, UilEditAlt, UilFocusAdd, UilBan,} from "@iconscout/react-unicons";
 import { Button } from "@mui/material";
+import { NotesData } from "../../core/mocks/mocks";
+import CreateEditDialog from "../../shared/parts/CreateEditDialog/CreateEditDialog";
 
 const Blog = () => {
   const [deleteMode, setDeleteMode] = useState(false);
@@ -70,11 +65,11 @@ const Blog = () => {
         <button className="delete-button" onClick={onDelete}>
           <UilBan></UilBan>
         </button>
-        <button className="edit-button">
+        {/* <button className="edit-button">
           <UilEditAlt></UilEditAlt>
-        </button>
+        </button> */}
 
-        {/* <CreateEditDialog open={open} handleClose={handleClose} /> */}
+        <CreateEditDialog open={open} handleClose={handleClose} />
       </div>
     </div>
   );

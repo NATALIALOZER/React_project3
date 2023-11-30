@@ -22,7 +22,7 @@ const LeftSidebar = (props) => {
       <div className="sidebar__logo">
         <img src={Logo} alt="Logo" />
         <span>
-          Nata<span className="a">L</span>o
+          Nat<span className="a">L</span>o
         </span>
       </div>
       <div className="sidebar__menu">
