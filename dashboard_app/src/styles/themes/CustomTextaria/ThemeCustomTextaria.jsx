@@ -4,19 +4,19 @@ import { Colors } from "../../colors";
 export const themeTextaria = createTheme({
   palette: {
       primary: {
-          main: '#000',
+          main: Colors.primary,
       },
   },
   typography: {
       allVariants: {
-          color: '#000'
+          color: Colors.main_font
       },
   },
   components: {
     MuiInputBase: {
       styleOverrides: {
           input: {
-              color: '#000',
+              color: Colors.main_font,
           }
       }
     },
@@ -26,7 +26,6 @@ export const themeTextaria = createTheme({
         root: {
           "& .MuiOutlinedInput-notchedOutline": {
             border: `3px solid #000`,
-            backgroundColor: "#fff",
           },
           "&.Mui-focused": {
             "& .MuiOutlinedInput-notchedOutline": {
@@ -36,5 +35,16 @@ export const themeTextaria = createTheme({
         },
       }
     },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          "&.Mui-error": {
+            position: "absolute",
+            bottom: "-1.5em",
+            color: Colors.danger
+          }
+        }
+      }
+    }
   }
 });

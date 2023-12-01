@@ -11,8 +11,10 @@ export const themeButton = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor: Colors.secondary,
-          border: '3px solid #000',
+          color: Colors.main_font,
+          backgroundColor: Colors.primary,
+          border: '2px solid #000',
+          marginBottom: '10px',
           "&:hover": {
             backgroundColor: Colors.focuse,
           },

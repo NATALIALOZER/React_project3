@@ -1,91 +1,88 @@
 import React from "react";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Navigate } from 'react-router-dom';
 
-import { useDispatch } from "react-redux";
-import { login, registration } from "../../store/actions/user";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserData, selectIsAuth } from "../../redux/slices/auth";
 
-import Button from "@mui/material/Button";
-import { TextField } from "@mui/material";
+import { toast } from "react-toastify";
 
 import "./Auth.scss";
+import Button from "@mui/material/Button";
+import { TextField } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import { themeButton } from "../../styles/themes/CustomButton/ThemeCustomButton";
+import { themeTextaria } from "../../styles/themes/CustomTextaria/ThemeCustomTextaria";
+
 
 const Auth = () => {
-  const [isNewUser, setUserType] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const isAuth = useSelector(selectIsAuth);
+
+  //login
+  const { 
+    register, 
+    handleSubmit, 
+    setError, 
+    formState: { errors, isValid } 
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: ''
+    },
+    mode: 'all'
+  });
 
   const dispatch = useDispatch();
+  
+  const onSubmit = async (values) => {
+    const data = await dispatch(fetchUserData(values));
+    if (data.payload && 'token' in data.payload) {
+      window.localStorage.setItem('token', data.payload.token);
+    } else {
+      toast('Error on auth proccess');     
+    }
+  };
+
+  if (isAuth) {
+    return <Navigate to="/" />
+  }
 
   return (
-    <div className="Auth">
+    <div className="auth">
       <div className="auth-block">
-        <h2>Authentication</h2>
+        <div className="auth-title title">Authentication</div>
         <span>
           Press your login and password to enter the App or create new account.
         </span>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          label="Email"
-          type="email"
-          fullWidth
-          variant="standard"
-          className="text-field"
-        ></TextField>
-        <TextField
-          margin="dense"
-          id="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          label="Password"
-          type="password"
-          fullWidth
-          variant="standard"
-          className="text-field"
-        ></TextField>
-        {isNewUser ? (
-          <TextField
-            margin="dense"
-            id="username"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-            label="Username"
-            type="text"
-            fullWidth
-            variant="standard"
-            className="text-field"
-          ></TextField>
-        ) : (
-          ""
-        )}
-        <div className="actions-container">
-          <Button className="Button" onClick={() => setUserType(!isNewUser)}>
-            {isNewUser ? (
-              <span>Move to Log In</span>
-            ) : (
-              <span>Create Account</span>
-            )}
-          </Button>
-          {isNewUser ? (
-            <Button
-              className="Button"
-              onClick={() => registration(email, password, username, isNewUser)}
-            >
-              Create
-            </Button>
-          ) : (
-            <Button
-              className="Button"
-              onClick={() => dispatch(login(email, password))}
-            >
-              Log In
-            </Button>
-          )}
-        </div>
+        
+        <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
+          <ThemeProvider theme={themeTextaria}>
+            <TextField
+              label="Email"
+              type='email'
+              className="text-field"
+              helperText={errors.email?.message}
+              error={Boolean(errors.email?.message)}
+              {...register('email', {required: 'Type your email'})}
+              autoFocus
+              fullWidth
+            ></TextField>
+            
+            <TextField
+              label="Password"
+              type="password"
+              className="text-field"
+              helperText={errors.password?.message}
+              error={Boolean(errors.password?.message)}
+              {...register('password', {required: 'Type your password'})}
+              fullWidth
+            ></TextField>
+          </ThemeProvider>
+
+          <ThemeProvider theme={themeButton}>
+            <Button className="Button" type="submit">Log In</Button>
+          </ThemeProvider>
+        </form>
       </div>
     </div>
   );

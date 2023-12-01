@@ -1,8 +1,8 @@
-const defaultState = {};
+// const defaultState = {};
 
-export function fileReducer(state = defaultState, action) {
-  switch (action.type) {
-    default:
-      return state;
-  }
-}
+// export function fileReducer(state = defaultState, action) {
+//   switch (action.type) {
+//     default:
+//       return state;
+//   }
+// }

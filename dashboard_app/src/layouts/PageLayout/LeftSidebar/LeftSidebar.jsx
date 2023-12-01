@@ -1,21 +1,29 @@
 import React, { useState } from "react";
-import Logo from "../../../assets/images/logo.png";
-import "./LeftSidebar.scss";
+
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsAuth, logout } from "../../../redux/slices/auth.js";
+
 import { LeftSidebarData } from "../../../core/mocks/mocks.js";
+
+import "./LeftSidebar.scss";
 import { UilSignOutAlt } from "@iconscout/react-unicons";
-import { NavLink } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { logout } from "../../../../store/reducers/userReducer";
+import Logo from "../../../assets/images/logo.png";
 
 const LeftSidebar = (props) => {
   const [selected, setSelected] = useState(0);
-
-  // const dispatch = useDispatch();
+  
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
 
   function onChangeTab(index) {
     setSelected(index);
     props.handleTabSwich(index);
   }
+
+  const onClickLogout = () => {
+    dispatch(logout());
+    window.localStorage.removeItem('token')
+  };
 
   return (
     <div className="sidebar">
@@ -43,10 +51,8 @@ const LeftSidebar = (props) => {
           );
         })}
 
-        <div className="sidebar__menuItem">
-          <NavLink to="/auth">
-            <UilSignOutAlt />
-          </NavLink>
+        <div className="sidebar__menuItem" onClick={onClickLogout}>
+          <UilSignOutAlt />
         </div>
       </div>
     </div>

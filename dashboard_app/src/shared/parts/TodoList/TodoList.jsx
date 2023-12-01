@@ -14,7 +14,7 @@ import { themeCheckbox } from "../../../styles/themes/CustomCheckbox/ThemeCustom
 // import { changeStatus } from "../../../store/reducers/todoListReducer";
 // import { updateTask } from "../../../store/actions/todoList";
 
-const TodoList = ({ user, list, dispatch }) => {
+const TodoList = ({list}) => {
 //   function handleCheck(event, item) {
 //     updateTask(user, { ...item, checked: event.target.checked });
 //     return (dispatch) =>
@@ -54,7 +54,7 @@ const TodoList = ({ user, list, dispatch }) => {
                   </ListItemIcon>
                   <ListItemText
                     id={labelId}
-                    primary={"#" + item.id + ". " + item.text}
+                    primary={item.title}
                   />
                 </ListItemButton>
               </ListItem>
