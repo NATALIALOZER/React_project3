@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  .Auth-block {
+  &-block {
     width: 30%;
     background-color: $c-background;
     border: $border;
@@ -19,7 +19,7 @@
     flex-direction: column;
     row-gap: 1em;
   }
-  .Auth-form {
+  &-form {
     display: flex;
     flex-direction: column;
     row-gap: 1.5em;
