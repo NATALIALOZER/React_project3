@@ -1,7 +1,7 @@
 @use "../../../styles/abstracts/variables" as *;
-@import "../../../styles/abstracts/mixins";
+@use "../../../styles/abstracts/mixins" as *;
 
-.sidebar {
+.Sidebar {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -9,29 +9,29 @@
   transition: all 300ms ease;
   color: $font-color;
 
-  &__logo {
+  &-logo {
     display: flex;
     font-weight: bold;
     font-size: $h1;
     align-items: flex-end;
     justify-content: space-evenly;
   }
-  &__logo > img {
+  &-logo > img {
     width: 4rem;
     height: 4rem;
   }
-  &__logo > span > span {
+  &-logo > span > span {
     color: $light-purple;
   }
 
-  &__menu {
+  &-menu {
     margin-top: $large-gap;
     display: flex;
     flex-direction: column;
     gap: $gap;
   }
 
-  &__menuItem {
+  &-menuItem {
     display: flex;
     align-items: center;
     gap: $gap;
@@ -55,41 +55,39 @@
         width: 8px;
         height: 100%;
         background-color: $focuse;
-        // margin-right: calc(1rem - 8px);
       }
     }
   }
 }
 
 @include responsive(sm_desktop) {
-  .sidebar {
-    // position: fixed;
-    &__logo {
+  .Sidebar {
+    &-logo {
       display: none;
     }
-    &__menuItem {
+    &-menuItem {
       min-width: 55px;
     }
-    &__menuItem > span {
+    &-menuItem > span {
       display: none;
     }
   }
 }
 
 @include responsive(tablet) {
-  .sidebar {
+  .Sidebar {
     z-index: 9;
     width: 55%;
     padding-right: $gap;
     height: 100%;
-    &__menuItem > span {
+    &-menuItem > span {
       display: block;
     }
-    &__logo {
+    &-logo {
       display: flex;
       max-width: 220px;
     }
-    &__menuItem:last-child {
+    &-menuItem:last-child {
       position: relative;
       margin-top: 6rem;
     }

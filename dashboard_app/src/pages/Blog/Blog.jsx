@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import "./Blog.scss";
-import { UilCancel, UilEditAlt, UilFocusAdd, UilBan,} from "@iconscout/react-unicons";
-import { Button } from "@mui/material";
-import { NotesData } from "../../core/mocks/mocks";
+
 import CreateEditDialog from "../../shared/parts/CreateEditDialog/CreateEditDialog";
+
+import "./Blog.scss";
+import { NotesData } from "../../core/mocks/mocks";
+import { Button, ThemeProvider } from "@mui/material";
+import { UilCancel, UilEditAlt, UilFocusAdd, UilBan,} from "@iconscout/react-unicons";
+import { themeButton } from "../../styles/themes/CustomButton/ThemeCustomButton";
 
 const Blog = () => {
   const [deleteMode, setDeleteMode] = useState(false);
@@ -39,37 +42,39 @@ const Blog = () => {
   };
 
   return (
-    <div className="BlogLayout">
-      <div className="BlogLeftSide">
-        {NotesData.map((item, index) => {
-          return (
-            <div
-              className={"item" + (deleteMode ? " delete-mode" : "")}
-              key={index}
-              id={item.id}
-            >
-              <div className="item__text">
-                <div className="h4">{item.text}</div>
-                <div className="item-date">{item.date}</div>
+    <div className="Blog">
+      <div className="Blog-title title">Blog</div>
+      <div className="Blog-content">
+        <div className="Blog-leftSide">
+          {NotesData.map((item, index) => {
+            return (
+              <div className={"Blog-item item" + (deleteMode ? " delete-mode" : "")}
+                   key={index}
+                   id={item.id}>
+                <div className="Blog-text">
+                  <div className="h4">{item.text}</div>
+                  <div className="Blog-date">{item.date}</div>
+                </div>
+                <div className="delete-checkbox">{setDeleteButtons()}</div>
               </div>
-              <div className="delete-checkbox">{setDeleteButtons()}</div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
 
-      <div className="BlogRightSide">
-        <button className="add-button" onClick={handleClickOpen}>
-          <UilFocusAdd></UilFocusAdd>
-        </button>
-        <button className="delete-button" onClick={onDelete}>
-          <UilBan></UilBan>
-        </button>
-        {/* <button className="edit-button">
-          <UilEditAlt></UilEditAlt>
-        </button> */}
-
-        <CreateEditDialog open={open} handleClose={handleClose} />
+        <div className="Blog-rightSide">
+          <ThemeProvider theme={themeButton}>
+            <Button variant="contained" className="add-button" onClick={handleClickOpen}>
+              <UilFocusAdd></UilFocusAdd>
+            </Button>
+            <Button className="delete-button" onClick={onDelete}>
+              <UilBan></UilBan>
+            </Button>
+            <Button className="edit-button">
+              <UilEditAlt></UilEditAlt>
+            </Button>
+          </ThemeProvider>
+          <CreateEditDialog open={open} handleClose={handleClose} />
+        </div>
       </div>
     </div>
   );

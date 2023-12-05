@@ -1,11 +1,7 @@
 import * as React from "react";
-import "./TodoList.scss";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import Checkbox from "@mui/material/Checkbox";
+
+import axios from "../../../axios";
+
 // import IconButton from "@mui/material/IconButton";
 // import CommentIcon from "@mui/icons-material/Comment";
 // import { connect } from "react-redux";
@@ -14,15 +10,24 @@ import { themeCheckbox } from "../../../styles/themes/CustomCheckbox/ThemeCustom
 // import { changeStatus } from "../../../store/reducers/todoListReducer";
 // import { updateTask } from "../../../store/actions/todoList";
 
-const TodoList = ({list}) => {
-//   function handleCheck(event, item) {
-//     updateTask(user, { ...item, checked: event.target.checked });
-//     return (dispatch) =>
-//       dispatch(changeStatus({ id: item.id, checked: event.target.checked }));
-//   }
+import "./TodoList.scss";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Checkbox from "@mui/material/Checkbox";
+
+const TodoList = ({list, updateList}) => {
+
+  const handleCheck = async (item) => {
+    const data = await axios.patch(`/tasks/${item._id}`, {
+      checked: !item.checked
+    }).then(() => updateList());
+  }
 
   return (
-    <div className="list-container">
+    <div className="List">
       <div className="sub-title">To Do:</div>
       {list?.length ? (
         <List sx={{ width: "100%", maxWidth: 360 }}>
@@ -48,8 +53,8 @@ const TodoList = ({list}) => {
                         tabIndex={-1}
                         disableRipple
                         inputProps={{ "aria-labelledby": labelId }}
+                        onChange={() => handleCheck(item)}
                       />
-                      {/* onChange={(event) => dispatch(handleCheck(event, item))} */}
                     </ThemeProvider>
                   </ListItemIcon>
                   <ListItemText

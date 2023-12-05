@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 // import { connect } from "react-redux";
 // import { setTask } from "../../../store/actions/todoList";
-import { themeButton } from "../../../styles/themes/CustomButton/ThemeCustomButton";
-import { themeTextaria } from "../../../styles/themes/CustomTextaria/ThemeCustomTextaria";
+
 import "./CreateInput.scss";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
+import { themeButton } from "../../../styles/themes/CustomButton/ThemeCustomButton";
+import { themeTextaria } from "../../../styles/themes/CustomTextaria/ThemeCustomTextaria";
 
 const CreateInput = ({ list, user, dispatch }) => {
   const [text, setText] = useState("");
@@ -23,7 +24,7 @@ const CreateInput = ({ list, user, dispatch }) => {
 //   }
 
   return (
-    <div className="input-container">
+    <div className="CreateInput">
       <ThemeProvider theme={themeTextaria}>
         <TextField
           fullWidth

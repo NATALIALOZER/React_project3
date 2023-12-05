@@ -18,7 +18,7 @@ $hover: #f799a354;
 $white: #fff;
 $black: #212529;
 $grey: #788097;
-$error-red: #ff0000;
+$error-red: #e59a96;
 $link-color: #ff6a6a;
 
 $font-color: #000;
@@ -26,13 +26,15 @@ $second-font-color: #5d576b;
 $regular-font: "Inter", sans-serif;
 $secondary-font: "Manrope", sans-serif;
 
-$border: #000;
+$border: 3px solid black;
+$box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 1);
 $radius: 0.7rem;
 
 $active-dark-background: rgba(25, 25, 25, 0.548);
 $dark-background: rgba(25, 25, 25, 0.3);
 $glass-background: rgba(255, 255, 255, 0.78);
 $c-background: #fff;
+$c-s-background: #ae7aff;
 
 $shadow: 0px 19px 60px rgb(0 0 0 / 8%);
 $sm_shadow: -79px 51px 60px rgba(0, 0, 0, 0.08);

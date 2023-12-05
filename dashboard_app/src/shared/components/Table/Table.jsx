@@ -7,7 +7,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./Table.scss";
-// import { Colors } from "../../../styles/colors";
 
 function createData(name, trackingId, date, status) {
   return { name, trackingId, date, status };

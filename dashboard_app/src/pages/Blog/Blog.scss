@@ -1,99 +1,65 @@
 @use "../../styles/abstracts/variables" as *;
 
-.BlogLayout {
-  background-color: $c-background;
-  display: flex;
-  justify-content: space-between;
-  border: 2px solid $border;
-  border-radius: $radius;
-  box-sizing: border-box;
-  gap: $gap;
-  padding: $gap;
-  height: 500px;
-}
+.Blog {
+  &-content {
+    background-color: $c-background;
+    display: flex;
+    justify-content: space-between;
+    border: $border;
+    border-radius: $radius;
+    box-sizing: border-box;
+    gap: $gap;
+    padding: $gap;
+    height: 500px;
+  }
 
-.BlogLeftSide {
-  display: flex;
-  flex-direction: column;
-  flex: 6;
-  overflow-y: scroll;
-  gap: $gap;
-}
+  &-leftSide {
+    display: flex;
+    flex-direction: column;
+    flex: 6;
+    overflow-y: scroll;
+    gap: $gap;
+  }
+  
+  &-rightSide {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: $gap;
+  }
+  
+  &-item {
+    color: $font-color;
+    border: $border;
+    box-shadow: $box-shadow;
+    width: 90%;
+    background: $c-s-background;
+    border-radius: 0.7rem;
+    padding: $boxes-padding;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.BlogRightSide {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: $gap;
-}
-
-.BlogLeftSide .item {
-  width: calc(100% - 2rem);
-  background: $dark-background;
-  border-radius: 0.7rem;
-  padding: $boxes-padding;
-  color: $white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  &__text {
+  &-text {
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-}
 
-.BlogRightSide button {
-  width: 100%;
-  height: auto;
-  padding: $boxes-padding;
-  background: $dark-background;
-  border-radius: $radius;
-  color: $white;
-  border: none;
-  margin-top: 1rem;
-  cursor: pointer;
+  &-date {
+    color: $extra-light-green;
+  }
 }
 
 .add-button:hover {
   color: $blue;
-  background: $active-dark-background;
-  outline: none !important;
 }
 
 .delete-button:hover {
   color: $error-red;
-  background: $active-dark-background;
-  outline: none !important;
 }
 
 .edit-button:hover {
   color: $light-green;
-  background: $active-dark-background;
-  outline: none !important;
 }
-
-.delete-mode:hover {
-  box-shadow: $active-dark-background;
-}
-
-.item-date {
-  color: $extra-light-green;
-}
-
-/* 
-@media screen and (max-width: 1200px) {
-    .BlogLayout{
-        justify-content:flex-start;
-        margin-top: 4rem;
-        width: 100% !important;
-    }
-}
-
-@media screen and (max-width: 768px)
-{
-    .BlogLayout{
-        margin-top: 2rem;
-        align-items: center;
-    }
-} */

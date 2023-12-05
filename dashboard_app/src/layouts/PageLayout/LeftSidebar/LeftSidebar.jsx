@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
-import { selectIsAuth, logout } from "../../../redux/slices/auth.js";
-
-import { LeftSidebarData } from "../../../core/mocks/mocks.js";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../redux/slices/auth.js";
 
 import "./LeftSidebar.scss";
-import { UilSignOutAlt } from "@iconscout/react-unicons";
 import Logo from "../../../assets/images/logo.png";
+import { UilSignOutAlt } from "@iconscout/react-unicons";
+import { LeftSidebarData } from "../../../core/mocks/mocks.js";
 
 const LeftSidebar = (props) => {
   const [selected, setSelected] = useState(0);
   
   const dispatch = useDispatch();
-  const isAuth = useSelector(selectIsAuth);
 
   function onChangeTab(index) {
     setSelected(index);
@@ -26,21 +24,21 @@ const LeftSidebar = (props) => {
   };
 
   return (
-    <div className="sidebar">
-      <div className="sidebar__logo">
+    <div className="Sidebar">
+      <div className="Sidebar-logo">
         <img src={Logo} alt="Logo" />
         <span>
           Nat<span className="a">L</span>o
         </span>
       </div>
-      <div className="sidebar__menu">
+      <div className="Sidebar-menu">
         {LeftSidebarData.map((item, index) => {
           return (
             <div
               className={
                 selected === index
-                  ? "sidebar__menuItem active"
-                  : "sidebar__menuItem"
+                  ? "Sidebar-menuItem active"
+                  : "Sidebar-menuItem"
               }
               key={index}
               onClick={() => onChangeTab(index)}
@@ -51,7 +49,7 @@ const LeftSidebar = (props) => {
           );
         })}
 
-        <div className="sidebar__menuItem" onClick={onClickLogout}>
+        <div className="Sidebar-menuItem" onClick={onClickLogout}>
           <UilSignOutAlt />
         </div>
       </div>

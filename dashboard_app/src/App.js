@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAuth, selectIsAuth } from "./redux/slices/auth";
@@ -10,7 +11,6 @@ import PageLayout from "./layouts/PageLayout/PageLayout";
 import Auth from "./pages/Auth/Auth";
 
 import "./App.scss";
-import { useEffect } from "react";
 
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <>
       <BrowserRouter>
         <Routes>
           <Route
@@ -36,7 +36,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ToastContainer />
-    </div>
+    </>
   );
 }
 

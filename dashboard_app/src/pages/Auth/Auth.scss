@@ -1,31 +1,27 @@
-body {
-  margin: 0;
-}
+@use "../../styles/abstracts/variables" as *;
 
-.auth {
+.Auth {
   background-image: url('../../assets/images/bg_auth_gradient.jpg');
-  font-family: "Inter", sans-serif;
+  font-family: $regular-font;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.auth-block {
-  width: 30%;
-  background-color: white;
-  border: 3px solid black;
-  box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 1);
-  border-radius: 15px;
-  color: black;
-  padding: 1em 2em;
-  display: flex;
-  flex-direction: column;
-  row-gap: 1em;
-}
-
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.5em;
+  .Auth-block {
+    width: 30%;
+    background-color: $c-background;
+    border: $border;
+    box-shadow: $box-shadow;
+    border-radius: 15px;
+    color: black;
+    padding: 1em 2em;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+  }
+  .Auth-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5em;
+  }
 }

@@ -1,0 +1,8 @@
+@use "../../styles/abstracts/variables" as *;
+
+.Dashboard {
+  display: flex;
+  flex-direction: column;
+  row-gap: $gap;
+  width: 100%;
+}

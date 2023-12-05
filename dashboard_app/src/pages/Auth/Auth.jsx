@@ -48,14 +48,14 @@ const Auth = () => {
   }
 
   return (
-    <div className="auth">
-      <div className="auth-block">
-        <div className="auth-title title">Authentication</div>
+    <div className="Auth">
+      <div className="Auth-block">
+        <div className="Auth-title title">Authentication</div>
         <span>
           Press your login and password to enter the App or create new account.
         </span>
         
-        <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
+        <form className="Auth-form" onSubmit={handleSubmit(onSubmit)}>
           <ThemeProvider theme={themeTextaria}>
             <TextField
               label="Email"
@@ -80,7 +80,7 @@ const Auth = () => {
           </ThemeProvider>
 
           <ThemeProvider theme={themeButton}>
-            <Button className="Button" type="submit">Log In</Button>
+            <Button className="Auth-button button" type="submit">Log In</Button>
           </ThemeProvider>
         </form>
       </div>

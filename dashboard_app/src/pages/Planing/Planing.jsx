@@ -1,12 +1,16 @@
 import React from "react";
-import "./Planing.scss";
+
 import CreateInput from "../../shared/components/CreateInput/CreateInput";
 import Table from "../../shared/components/Table/Table";
+import PlanWidget from "../../shared/parts/PlanWidget/PlanWidget";
 
-const Planing = (props) => {
+import "./Planing.scss";
+
+const Planing = () => {
   return (
     <div className="Planing">
-      {/* <PlanWidget /> */}
+      <div className="Planing-title title">Planing</div>
+      <PlanWidget />
       <CreateInput />
       <Table />
     </div>

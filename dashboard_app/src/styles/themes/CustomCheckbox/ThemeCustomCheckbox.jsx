@@ -1,16 +1,18 @@
 import { createTheme } from "@mui/material/styles";
+import { checkboxClasses } from '@mui/material/Checkbox';
 import { Colors } from "../../colors";
 
 export const themeCheckbox = createTheme({
-  palette: {
-    primary: {
-      main: Colors.primary,
-    },
-    secondary: {
-      main: Colors.secondary,
-    },
-    error: {
-      main: Colors.danger,
+  components: {
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+            color: Colors.black,
+            [`&.${checkboxClasses.checked}`]: {
+                color: Colors.primary,
+            },
+        },
+      },
     },
   },
 });

@@ -1,6 +1,8 @@
 import React from "react";
+
+import Card from "../../components/Card/Card";
 import { CardsData } from "../../../core/mocks/mocks";
-// import Card from "../Card/Card";
+
 import "./Cards.scss";
 
 const Cards = () => {
@@ -8,15 +10,15 @@ const Cards = () => {
     <div className="Cards">
       {CardsData.map((card, id) => {
         return (
-          <div className="parentContainer" key={id}>
-            {/* <Card
+          <div className="Cards-container" key={id}>
+            <Card
               title={card.title}
               color={card.color}
               barValue={card.barValue}
               value={card.value}
               png={card.png}
               series={card.series}
-            /> */}
+            />
           </div>
         );
       })}

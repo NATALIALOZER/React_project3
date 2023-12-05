@@ -2,48 +2,18 @@ import React from "react";
 import "./MainDash.scss";
 import Blog from "../../../pages/Blog/Blog";
 import Planing from "../../../pages/Planing/Planing";
-import Table from "../../../shared/components/Table/Table";
-import Cards from "../../../shared/parts/Cards/Cards";
+import Dashboard from "../../../pages/Dashboard/Dashboard";
 import Loader from "../../../shared/components/Loader/Loader";
 
 
-//to do: change to map
 const MainDash = (props) => {
-  const switchDash = () => {
-    switch (props.currentTab) {
-      case 0:
-        return (
-          <div className="Dashboard">
-            <div className="title">Dashboard</div>
-            <div className="Dashboard__content">
-              <Cards />
-              <Table />
-            </div>
-          </div>
-        );
+  const pageComponents = new Map([
+    [0, <Dashboard />],
+    [1, <Blog />],
+    [3, <Planing />]
+  ])
 
-      case 1:
-        return (
-          <div className="Blog">
-            <div className="title">Blog</div>
-            <Blog />
-          </div>
-        );
-
-      case 3:
-        return (
-          <div className="Planing">
-            <div className="title">Planing Page</div>
-            <Planing />
-          </div>
-        );
-
-      default:
-        return <Loader />;
-    }
-  };
-
-  return <div className="MainDash">{ switchDash() }</div>;
+  return <div className="MainDash">{ pageComponents.get(props.currentTab) || <Loader /> }</div>;
 };
 
 export default MainDash;
