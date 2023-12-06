@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchTasks } from "../../../redux/slices/tasks";
+import { selectUserData } from "../../../redux/slices/auth";
 
 import CustomerReview from "../../../shared/parts/CustomerReview/CustomerReview";
 import TodoList from "../../../shared/parts/TodoList/TodoList";
@@ -12,15 +13,18 @@ import "./RightSidebar.scss";
 const RightAside = () => {
   const dispatch = useDispatch();
   const { tasks } = useSelector(state => state.tasks);
+  
+  const userData = useSelector(selectUserData);
 
   const isTasksLoading = tasks.status === 'loading';
 
   useEffect(() => {
-    dispatch(fetchTasks());
+    console.log(userData);
+    dispatch(fetchTasks(userData._id));
   }, []);
 
   const updateList = () => {
-    dispatch(fetchTasks());
+    dispatch(fetchTasks(userData._id));
   }
 
 

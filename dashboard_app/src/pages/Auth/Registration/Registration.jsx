@@ -36,6 +36,7 @@ const Registration = () => {
     const data = await dispatch(fetchRegistration(values));
     if (data.payload && 'token' in data.payload) {
       window.localStorage.setItem('token', data.payload.token);
+      window.localStorage.setItem('userId', data.payload._id);
     } else {
       toast('Error on auth proccess');     
     }
