@@ -38,10 +38,10 @@ const makeStyle = (status) => {
   }
 };
 
-export default function BasicTable() {
+export default function BasicTable(props) {
   return (
     <div className="Table">
-      <div className="sub-title">Recent Orders</div>
+      <div className="sub-title">{props.title || 'Recent Orders'}</div>
       <TableContainer
         component={Paper}
         style={{
@@ -54,13 +54,19 @@ export default function BasicTable() {
       >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
+            {props.headers?.lenght ? 
+            <TableRow>
+              {props.headers.map(header => <TableCell align="left">{header}</TableCell>)}
+            </TableRow>
+            :
             <TableRow>
               <TableCell>Product</TableCell>
               <TableCell align="left">Tracking ID</TableCell>
               <TableCell align="left">Date</TableCell>
               <TableCell align="left">Status</TableCell>
               <TableCell align="left"></TableCell>
-            </TableRow>
+            </TableRow> 
+            }
           </TableHead>
           <TableBody style={{ color: "white" }}>
             {rows.map((row) => (

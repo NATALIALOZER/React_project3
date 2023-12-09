@@ -2,15 +2,12 @@ import * as React from "react";
 
 import axios from "../../../axios";
 
-// import IconButton from "@mui/material/IconButton";
-// import CommentIcon from "@mui/icons-material/Comment";
-// import { connect } from "react-redux";
-import { ThemeProvider } from "@mui/material/styles";
-import { themeCheckbox } from "../../../styles/themes/CustomCheckbox/ThemeCustomCheckbox";
-// import { changeStatus } from "../../../store/reducers/todoListReducer";
-// import { updateTask } from "../../../store/actions/todoList";
+import { useDispatch } from 'react-redux'
+import { deleteTask } from "../../../redux/slices/tasks";
 
 import "./TodoList.scss";
+import { ThemeProvider } from "@mui/material/styles";
+import { themeCheckbox } from "../../../styles/themes/CustomCheckbox/ThemeCustomCheckbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -18,12 +15,17 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 
-const TodoList = ({list, updateList}) => {
+const TodoList = ({list, updateList, isRightMenu}) => {
+  const dispatch = useDispatch();
 
   const handleCheck = async (item) => {
     const data = await axios.patch(`/tasks/${item._id}`, {
       checked: !item.checked
     }).then(() => updateList());
+  }
+
+  const onDelete = (id) => {
+    dispatch(deleteTask(id));
   }
 
   return (
@@ -34,16 +36,30 @@ const TodoList = ({list, updateList}) => {
           {list.map((item, i) => {
             const labelId = `checkbox-list-label-${i}`;
 
-            return (
-              <ListItem
-                key={i}
-                // secondaryAction={
-                //   <IconButton edge="end" aria-label="comments">
-                //     <CommentIcon />
-                //   </IconButton>
-                // }
-                disablePadding
-              >
+            return !isRightMenu ? (
+              <ListItem key={i} disablePadding>
+                <ListItemButton className="Item" role={undefined} dense>
+                  <ListItemIcon>
+                    <ThemeProvider theme={themeCheckbox}>
+                      <Checkbox
+                        edge="start"
+                        checked={item.checked || false}
+                        tabIndex={-1}
+                        disableRipple
+                        inputProps={{ "aria-labelledby": labelId }}
+                        onChange={() => handleCheck(item)}
+                      />
+                    </ThemeProvider>
+                  </ListItemIcon>
+                  <ListItemText
+                    id={labelId}
+                    primary={item.title}
+                  />
+                </ListItemButton>
+                <ListItemButton onClick={() => onDelete(item._id)}>Delete</ListItemButton>
+              </ListItem>
+            ) : (!item.checked ?
+              <ListItem key={i} disablePadding>
                 <ListItemButton className="Item" role={undefined} dense>
                   <ListItemIcon>
                     <ThemeProvider theme={themeCheckbox}>
@@ -63,6 +79,7 @@ const TodoList = ({list, updateList}) => {
                   />
                 </ListItemButton>
               </ListItem>
+              : ''
             );
           })}
         </List>
@@ -73,13 +90,4 @@ const TodoList = ({list, updateList}) => {
   );
 };
 
-// function mapStateToProps(state) {
-//   return {
-//     list: state.tasks.tasks,
-//     user: state.user,
-//   };
-// }
-
-// export default connect(mapStateToProps)(TodoList);
-
-export default (TodoList);
+export default TodoList;

@@ -33,6 +33,10 @@ import {
       icon: UilChart,
       heading: "Analytics",
     },
+    {
+      icon: UilClipboardAlt,
+      heading: "Tasks",
+    },
   ];
   
   export const CardsData = [

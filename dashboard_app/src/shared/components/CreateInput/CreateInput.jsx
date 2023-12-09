@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-// import { connect } from "react-redux";
-// import { setTask } from "../../../store/actions/todoList";
+
+import { useDispatch } from 'react-redux'
+import { createTask } from "../../../redux/slices/tasks";
 
 import "./CreateInput.scss";
 import Button from "@mui/material/Button";
@@ -9,19 +10,20 @@ import { ThemeProvider } from "@mui/material/styles";
 import { themeButton } from "../../../styles/themes/CustomButton/ThemeCustomButton";
 import { themeTextaria } from "../../../styles/themes/CustomTextaria/ThemeCustomTextaria";
 
-const CreateInput = ({ list, user, dispatch }) => {
-  const [text, setText] = useState("");
+const CreateInput = () => {
+  const dispatch = useDispatch();
+  const [text, setText] = useState('');
 
-//   function saveTask(text) {
-//     return (dispatch) => {
-//       const newTask = {
-//         id: list.length ? +list[list.length - 1].id + 1 : 1,
-//         text,
-//       };
-
-//       dispatch(setTask(user, newTask));
-//     };
-//   }
+  const saveTask = (title) => {
+    dispatch(createTask(
+      {
+        title: title,
+        content: '',
+        tags: '',
+        checked: false
+      }
+    ));
+  } 
 
   return (
     <div className="CreateInput">
@@ -37,22 +39,12 @@ const CreateInput = ({ list, user, dispatch }) => {
         />
       </ThemeProvider>
       <ThemeProvider theme={themeButton}>
-        <Button variant="contained">
+        <Button variant="contained" onClick={() => saveTask(text)}>
           ADD
         </Button>
-        {/* onClick={() => dispatch(saveTask(text))} */}
       </ThemeProvider>
     </div>
   );
 };
 
-// function mapStateToProps(state) {
-//   return {
-//     list: state.tasks.tasks,
-//     user: state.user,
-//   };
-// }
-
-export default (CreateInput);
-
-// connect(mapStateToProps)
+export default CreateInput;

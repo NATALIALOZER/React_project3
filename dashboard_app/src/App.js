@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import PageLayout from "./layouts/PageLayout/PageLayout";
+import Tasks from "./pages/Tasks/Tasks";
 import Auth from "./pages/Auth/Auth";
 
 import "./App.scss";

@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { logout } from "../../../redux/slices/auth.js";
+import { updateTab, selectTab } from "../../../redux/slices/tabs.js";
 
 import "./LeftSidebar.scss";
 import Logo from "../../../assets/images/logo.png";
 import { UilSignOutAlt } from "@iconscout/react-unicons";
 import { LeftSidebarData } from "../../../core/mocks/mocks.js";
 
-const LeftSidebar = (props) => {
-  const [selected, setSelected] = useState(0);
+const LeftSidebar = () => {
+  const currentTab = useSelector(selectTab) || 0;
   
   const dispatch = useDispatch();
 
   function onChangeTab(index) {
-    setSelected(index);
-    props.handleTabSwich(index);
+    dispatch(updateTab(index));
   }
 
   const onClickLogout = () => {
@@ -36,7 +37,7 @@ const LeftSidebar = (props) => {
           return (
             <div
               className={
-                selected === index
+                currentTab === index
                   ? "Sidebar-menuItem active"
                   : "Sidebar-menuItem"
               }
