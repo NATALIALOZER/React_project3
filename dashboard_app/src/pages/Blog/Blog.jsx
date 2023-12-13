@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 
-import CreateEditDialog from "../../shared/parts/CreateEditDialog/CreateEditDialog";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPosts } from "../../redux/slices/posts";
+import { selectPosts } from "../../redux/slices/posts";
+import { selectUserData } from "../../redux/slices/auth";
+
 import CreateInput from "../../shared/components/CreateInput/CreateInput";
+import Loader from "../../shared/components/Loader/Loader";
 
 import "./Blog.scss";
-import { NotesData } from "../../core/mocks/mocks";
 import { Button, ThemeProvider } from "@mui/material";
 import { UilCancel, UilEditAlt, UilFocusAdd, UilBan,} from "@iconscout/react-unicons";
 import { themeButton } from "../../styles/themes/CustomButton/ThemeCustomButton";
 import User from "../../assets/icons/user.svg";
 
 const Blog = () => {
-  // const [deleteMode, setDeleteMode] = useState(false);
-  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const userData = useSelector(selectUserData);
+  const {posts} = useSelector(selectPosts);
+
+  const isPostsLoading = posts.status === 'loading';
+
+  useEffect(() => {
+    dispatch(fetchPosts(userData._id));
+  }, []);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -58,16 +69,15 @@ const Blog = () => {
           </div>
         </div>
         <div className="Blog-top">
-          {NotesData.map((item, index) => {
+          {isPostsLoading ? <Loader/> : posts.items?.map((item, index) => {
             return (
               <div className="Blog-card card"
                    key={index}
-                   id={item.id}>
+                   id={item._id}>
                 <div className="Blog-text">
                   <div className="h4">{item.text}</div>
-                  <div className="Blog-date">{item.date}</div>
+                  {/* <div className="Blog-date">{item.date}</div> */}
                 </div>
-                {/* <div className="delete-checkbox">{setDeleteButtons()}</div> */}
                 <div className="Blog-actions">
                   <ThemeProvider theme={themeButton}>
                     <Button className="edit-button">
@@ -82,14 +92,6 @@ const Blog = () => {
             );
           })}
         </div>
-
-        {/* <div className="Blog-rightSide">
-          <ThemeProvider theme={themeButton}>
-            <Button variant="contained" className="add-button" onClick={handleClickOpen}>
-              <UilFocusAdd></UilFocusAdd>
-            </Button>
-          </ThemeProvider>
-        </div> */}
       </div>
     </div>
   );

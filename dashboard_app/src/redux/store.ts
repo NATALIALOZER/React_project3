@@ -6,6 +6,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './slices/auth';
 import { tasksReducer } from './slices/tasks';
 import { tabsReducer } from './slices/tabs';
+import { postsReducer } from './slices/posts';
   
 const persistConfig = {
     key: 'root',
@@ -16,7 +17,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
     auth: authReducer,
     tasks: tasksReducer,
-    tabs: tabsReducer
+    tabs: tabsReducer,
+    posts: postsReducer
 });
 
 const persistedReducer = persistReducer<ReturnType<typeof rootReducer>>(persistConfig, rootReducer);
@@ -41,6 +43,7 @@ customState: Partial<RootState>
 ): PreloadedState<RootState> => {
     return {
         tasks: { ...store.getState().tasks, ...customState.tasks },
+        posts: { ...store.getState().posts, ...customState.posts },
         tabs: { ...store.getState().tabs, ...customState.tabs },
         auth: { ...store.getState().auth, ...customState.auth }
     };

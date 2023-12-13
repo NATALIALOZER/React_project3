@@ -15,19 +15,19 @@ const CreateInput = ({ type }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
 
-  const save = (title) => {
+  const save = (text) => {
     const item = type === 'task' ? {
-      title: title,
+      title: text,
       content: '',
       tags: '',
       checked: false
-    } :
-    {
-      text: '',
+    } : {
+      text: text,
       tags: ''
     }
 
     type === 'task' ? dispatch(createTask(item)) : dispatch(createPost(item));
+    setText('');
   } 
 
   return (
