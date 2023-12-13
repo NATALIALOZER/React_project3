@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAuth, selectIsAuth } from "./redux/slices/auth";
+import { fetchAuth, selectIsAuth, selectAuthCheckState } from "./redux/slices/auth";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,6 +16,7 @@ import "./App.scss";
 
 function App() {
   const dispatch = useDispatch();
+  const authCheck = useSelector(selectAuthCheckState);
   const isAuth = useSelector(selectIsAuth);
 
   useEffect(() => {
@@ -26,14 +27,16 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={isAuth ? <PageLayout /> : <Auth />}
-          />
-          <Route
-            path="/auth"
-            element={<Auth />}
-          />
+          {authCheck !== 'loaded' ? 'Loading...' : <>
+            <Route
+              path="/"
+              element={isAuth ? <PageLayout /> : <Auth />}
+            />
+            <Route
+              path="/auth"
+              element={<Auth />}
+            />
+          </>}
         </Routes>
       </BrowserRouter>
       <ToastContainer />
