@@ -46,3 +46,19 @@
 ::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 0 1.5px $black;
 }
+
+.boldblur {
+  box-shadow: $box-shadow;
+}
+
+.card {
+  color: $font-color;
+  border: $border;
+  background: $c-background;
+  border-radius: 0.7rem;
+  padding: $boxes-padding;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5em;
+}

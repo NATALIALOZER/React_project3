@@ -1,9 +1,11 @@
-import * as React from "react";
+import React, { useState } from "react";
 
 import axios from "../../../axios";
 
 import { useDispatch } from 'react-redux'
 import { deleteTask } from "../../../redux/slices/tasks";
+
+import EditTaskDialog from "../../parts/EditTaskDialog/EditTaskDialog";
 
 import "./TodoList.scss";
 import { ThemeProvider } from "@mui/material/styles";
@@ -17,11 +19,24 @@ import Checkbox from "@mui/material/Checkbox";
 
 const TodoList = ({list, updateList, isRightMenu}) => {
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
 
   const handleCheck = async (item) => {
     const data = await axios.patch(`/tasks/${item._id}`, {
       checked: !item.checked
     }).then(() => updateList());
+  }
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const onUpdate = () => {
+    handleClickOpen();
   }
 
   const onDelete = (id) => {
@@ -47,7 +62,7 @@ const TodoList = ({list, updateList, isRightMenu}) => {
                         tabIndex={-1}
                         disableRipple
                         inputProps={{ "aria-labelledby": labelId }}
-                        onChange={() => handleCheck(item)}
+                        onChange={() => handleCheck()}
                       />
                     </ThemeProvider>
                   </ListItemIcon>
@@ -56,6 +71,8 @@ const TodoList = ({list, updateList, isRightMenu}) => {
                     primary={item.title}
                   />
                 </ListItemButton>
+                <ListItemButton onClick={() => onUpdate()}>Edit</ListItemButton>
+                <EditTaskDialog open={open} item={item} handleClose={handleClose} />
                 <ListItemButton onClick={() => onDelete(item._id)}>Delete</ListItemButton>
               </ListItem>
             ) : (!item.checked ?

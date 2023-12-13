@@ -13,12 +13,6 @@ const CreateEditDialog = ({ open, handleClose }) => {
 
   const createNewNote = () => {
     handleClose();
-    console.log({
-      id: NotesData.length > 0 ? NotesData[NotesData.length - 1].id : 0 + 1,
-      author: "???",
-      text: valueRef.current.value,
-      date: new Date().toDateString(),
-    });
     return NotesData.push({
       id: NotesData.length > 0 ? NotesData[NotesData.length - 1].id : 0 + 1,
       author: "???",

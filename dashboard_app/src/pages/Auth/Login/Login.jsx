@@ -40,6 +40,7 @@ const Login = () => {
       toast('Error on auth proccess');     
     }
   };
+  
   return (
     <form className="Auth-form" onSubmit={handleSubmit(onSubmit)}>
       <ThemeProvider theme={themeTextaria}>

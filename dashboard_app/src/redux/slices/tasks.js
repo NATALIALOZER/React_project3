@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import axios from '../../axios';
-import { json } from 'react-router-dom';
 
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async (userId) => {
     const { data } = await axios.get('/tasks', { params: { userId: userId } });
@@ -15,6 +14,11 @@ export const createTask = createAsyncThunk('tasks/createTask', async (task) => {
 
 export const deleteTask = createAsyncThunk('tasks/deleteTask', async (id) => {
     const { data } = await axios.delete(`/tasks/${id}`);
+    return data;
+});
+
+export const updateTask = createAsyncThunk('tasks/updateTask', async (body) => {
+    const { data } = await axios.patch(`/tasks/${body._id}`, body);
     return data;
 });
 
@@ -53,6 +57,11 @@ const tasksSlice = createSlice({
         [deleteTask.fulfilled]: (state, action) => {
             console.log(action)
             state.tasks.items = [...state.tasks.items].filter(task => task._id !== action.meta.arg);
+            state.tasks.status = 'loaded';
+        },
+        [updateTask.fulfilled]: (state, action) => {
+            state.tasks.items = [...state.tasks.items].filter(task => task._id !== action.meta.arg._id)
+            state.tasks.items = [...state.tasks.items, {...action.meta.arg}];
             state.tasks.status = 'loaded';
         },
     }

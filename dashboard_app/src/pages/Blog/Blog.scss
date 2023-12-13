@@ -2,10 +2,9 @@
 
 .Blog {
   &-content {
-    background-color: $c-background;
     display: flex;
+    flex-direction:column;
     justify-content: space-between;
-    border: $border;
     border-radius: $radius;
     box-sizing: border-box;
     gap: $gap;
@@ -13,10 +12,15 @@
     height: 500px;
   }
 
-  &-leftSide {
+  &-create {
+   padding-right: 1em;
+  }
+
+  &-top {
     display: flex;
     flex-direction: column;
     flex: 6;
+    overflow-x: hidden;
     overflow-y: scroll;
     gap: $gap;
   }
@@ -26,19 +30,6 @@
     flex: 1;
     flex-direction: column;
     gap: $gap;
-  }
-  
-  &-item {
-    color: $font-color;
-    border: $border;
-    box-shadow: $box-shadow;
-    width: 90%;
-    background: $c-s-background;
-    border-radius: 0.7rem;
-    padding: $boxes-padding;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 
   &-text {
