@@ -4,7 +4,8 @@ import multer from 'multer';
 import cors from 'cors';
 
 import { taskCreateValidation } from './backend/validations/task.js'
-import { UserController, TasksController } from './backend/controllers/index.js'
+import { postCreateValidation } from './backend/validations/post.js'
+import { UserController, TasksController, PostsController } from './backend/controllers/index.js'
 import { checkAuth, handleValidationErrors } from './backend/utils/index.js';
 import { registrationValidation, loginValidation } from './backend/validations/auth.js';
 
@@ -46,6 +47,12 @@ app.get('/tasks/:id', TasksController.getTaskById);
 app.post('/tasks', checkAuth, taskCreateValidation, handleValidationErrors, TasksController.createTask);
 app.delete('/tasks/:id', checkAuth, TasksController.deleteTask);
 app.patch('/tasks/:id', checkAuth, taskCreateValidation, handleValidationErrors, TasksController.updateTask);
+
+app.get('/posts', PostsController.getAllPosts);
+app.get('/posts/:id', PostsController.getPostById);
+app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, PostsController.createPost);
+app.delete('/posts/:id', checkAuth, PostsController.deletePost);
+app.patch('/posts/:id', checkAuth, postCreateValidation, handleValidationErrors, PostsController.updatePost);
 
 app.listen(4444, (err) => {
     if (err) {
