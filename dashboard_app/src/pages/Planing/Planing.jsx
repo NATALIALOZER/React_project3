@@ -11,7 +11,7 @@ const Planing = () => {
     <div className="Planing">
       <div className="Planing-title title">Planing</div>
       <PlanWidget />
-      <CreateInput />
+      <CreateInput type={'task'}/>
       <Table />
     </div>
   );

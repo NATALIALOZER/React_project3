@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { useDispatch } from 'react-redux'
 import { createTask } from "../../../redux/slices/tasks";
+import { createPost } from "../../../redux/slices/posts";
 
 import "./CreateInput.scss";
 import Button from "@mui/material/Button";
@@ -10,19 +11,23 @@ import { ThemeProvider } from "@mui/material/styles";
 import { themeButton } from "../../../styles/themes/CustomButton/ThemeCustomButton";
 import { themeTextaria } from "../../../styles/themes/CustomTextaria/ThemeCustomTextaria";
 
-const CreateInput = () => {
+const CreateInput = ({ type }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
 
-  const saveTask = (title) => {
-    dispatch(createTask(
-      {
-        title: title,
-        content: '',
-        tags: '',
-        checked: false
-      }
-    ));
+  const save = (title) => {
+    const item = type === 'task' ? {
+      title: title,
+      content: '',
+      tags: '',
+      checked: false
+    } :
+    {
+      text: '',
+      tags: ''
+    }
+
+    type === 'task' ? dispatch(createTask(item)) : dispatch(createPost(item));
   } 
 
   return (
@@ -31,7 +36,7 @@ const CreateInput = () => {
         <TextField
           fullWidth
           id="outlined-multiline-static"
-          label="Create task"
+          label="Create"
           multiline
           rows={2}
           placeholder="todo..."
@@ -39,7 +44,7 @@ const CreateInput = () => {
         />
       </ThemeProvider>
       <ThemeProvider theme={themeButton}>
-        <Button variant="contained" onClick={() => saveTask(text)}>
+        <Button variant="contained" onClick={() => save(text)}>
           ADD
         </Button>
       </ThemeProvider>

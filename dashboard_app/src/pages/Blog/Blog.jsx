@@ -53,7 +53,7 @@ const Blog = () => {
               <img src={User} alt="profile" width={55} />
             </div>
             <div className="Blog-input" width={100}>
-              <CreateInput />
+              <CreateInput type={'post'}/>
             </div>
           </div>
         </div>
