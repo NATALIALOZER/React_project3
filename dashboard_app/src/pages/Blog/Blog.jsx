@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts } from "../../redux/slices/posts";
+import { deletePost, fetchPosts } from "../../redux/slices/posts";
 import { selectPosts } from "../../redux/slices/posts";
 import { selectUserData } from "../../redux/slices/auth";
 
 import CreateInput from "../../shared/components/CreateInput/CreateInput";
+import CreateEditDialog from "../../shared/parts/CreateEditDialog/CreateEditDialog";
 import Loader from "../../shared/components/Loader/Loader";
 
 import "./Blog.scss";
@@ -18,6 +19,7 @@ const Blog = () => {
   const dispatch = useDispatch();
   const userData = useSelector(selectUserData);
   const {posts} = useSelector(selectPosts);
+  const [open, setOpen] = useState(false);
 
   const isPostsLoading = posts.status === 'loading';
 
@@ -33,26 +35,13 @@ const Blog = () => {
     setOpen(false);
   };
 
-  const onDelete = () => {
-    // setDeleteMode(!deleteMode);
+  const onDelete = (id) => {
+    dispatch(deletePost(id));
   };
 
-  // const setDeleteButtons = () => {
-  //   if (deleteMode) {
-  //     return (
-  //       <Button
-  //         onClick={(event) => {
-  //           const targetItem = event.target.closest(".item");
-  //           targetItem.style.display = "none";
-  //           NotesData.pop(NotesData.find((item) => item.id === targetItem.id));
-  //           if (NotesData.length <= 0) setDeleteMode(false);
-  //         }}
-  //       >
-  //         <UilCancel></UilCancel>
-  //       </Button>
-  //     );
-  //   }
-  // };
+  const onEdit = (post) => {
+    handleClickOpen();
+  }
 
   return (
     <div className="Blog">
@@ -80,14 +69,15 @@ const Blog = () => {
                 </div>
                 <div className="Blog-actions">
                   <ThemeProvider theme={themeButton}>
-                    <Button className="edit-button">
+                    <Button className="edit-button" onClick={() => onEdit(item)}>
                       <UilEditAlt></UilEditAlt>
                     </Button>
-                    <Button className="delete-button" onClick={onDelete}>
+                    <Button className="delete-button" onClick={() => onDelete(item._id)}>
                       <UilBan></UilBan>
                     </Button>
                   </ThemeProvider>
                 </div>
+                <CreateEditDialog open={open} item={item} handleClose={handleClose} />
               </div>
             );
           })}
