@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
 import cors from 'cors';
+import 'dotenv/config'
 
 import { taskCreateValidation } from './backend/validations/task.js'
 import { postCreateValidation } from './backend/validations/post.js'
@@ -10,7 +11,7 @@ import { checkAuth, handleValidationErrors } from './backend/utils/index.js';
 import { registrationValidation, loginValidation } from './backend/validations/auth.js';
 
 mongoose
-    .connect('mongodb+srv://crisa:hardcore15@cluster0.qw56l.mongodb.net/dashboardDB?retryWrites=true&w=majority')
+    .connect(process.env.MONGO_URL)
     .then(() => console.log('DB'))
     .catch((err) => console.log('DB error: ', err));
 
