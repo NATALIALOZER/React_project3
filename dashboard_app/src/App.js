@@ -27,16 +27,14 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {authCheck !== 'loaded' ? 'Loading...' : <>
-            <Route
-              path="/"
-              element={isAuth ? <PageLayout /> : <Auth />}
-            />
-            <Route
-              path="/auth"
-              element={<Auth />}
-            />
-          </>}
+          <Route
+            path="/"
+            element={isAuth ? <PageLayout /> : <Auth />}
+          />
+          <Route
+            path="/auth"
+            element={<Auth />}
+          />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
